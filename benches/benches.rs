@@ -29,6 +29,7 @@ use roots::find_root_brent;
 use roots::find_root_newton_raphson;
 use roots::find_root_regula_falsi;
 use roots::find_root_secant;
+use roots::find_root_modab;
 use roots::find_roots_biquadratic;
 use roots::find_roots_quadratic;
 use roots::find_roots_quartic;
@@ -93,6 +94,14 @@ fn quartic_x4_min_1_x1000(c: &mut Criterion) {
     c.bench_function("simple", |b| b.iter(|| find_roots_quartic(1f64, 0f64, 0f64, 0f64, -1f64)));
 }
 
+fn modab_x2_min_1_x1000(c: &mut Criterion) {
+    c.bench_function("simple", |b| b.iter(|| find_root_modab(0f64, 10f64, &x2_min_1, &mut 1e-15f64)));
+}
+
+fn modab_x4_min_1_x1000(c: &mut Criterion) {
+    c.bench_function("simple", |b| b.iter(|| find_root_modab(0f64, 10f64, &x4_min_1, &mut 1e-15f64)));
+}
+
 criterion_group!(
     benches,
     quadratic_x2_min_1_x1000,
@@ -105,7 +114,9 @@ criterion_group!(
     brent_x2_min_1_x1000,
     brent_x4_min_1_x1000,
     newton_raphson_x2_min_1_x1000,
-    newton_raphson_x4_min_1_x1000
+    newton_raphson_x4_min_1_x1000,
+    modab_x2_min_1_x1000,
+    modab_x4_min_1_x1000
 );
 
 criterion_main!(benches);

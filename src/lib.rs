@@ -91,6 +91,7 @@ pub use self::numerical::newton_raphson::find_root_newton_raphson;
 pub use self::numerical::polynom::find_roots_sturm;
 pub use self::numerical::regula_falsi::find_root_regula_falsi;
 pub use self::numerical::secant::find_root_secant;
+pub use self::numerical::modab::find_root_modab;
 pub use self::numerical::simple_convergency::SimpleConvergency;
 pub use self::numerical::Convergency;
 pub use self::numerical::Interval;

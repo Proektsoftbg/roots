@@ -52,7 +52,6 @@ pub trait FloatType:
     fn pi() -> Self;
     fn two_third_pi() -> Self;
     fn sqrt(self) -> Self;
-    /// The cubic root function is pow(x, 1/3) accepting negative arguments
     fn cbrt(self) -> Self {
         if self < Self::zero() {
             -(-self).powf(Self::one_third())
@@ -66,6 +65,24 @@ pub trait FloatType:
     fn cos(self) -> Self;
     fn abs(self) -> Self;
     fn powf(self, n: Self) -> Self;
+    fn signum(self) -> Self {
+        if self > Self::zero() {
+            Self::one()
+        } else if self < Self::zero() {
+            -Self::one()
+        } else {
+            Self::zero()
+        }
+    }
+    fn clamp(self, min: Self, max: Self) -> Self {
+        if self < min {
+            min
+        } else if self > max {
+            max
+        } else {
+            self
+        }
+    }
 }
 
 impl FloatType for f32 {

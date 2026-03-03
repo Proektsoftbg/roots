@@ -161,6 +161,7 @@ pub mod newton_raphson;
 pub mod polynom;
 pub mod regula_falsi;
 pub mod secant;
+pub mod modab;
 
 pub mod debug_convergency;
 pub mod simple_convergency;
